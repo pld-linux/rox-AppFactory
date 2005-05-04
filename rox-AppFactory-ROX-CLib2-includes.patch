@@ -1,0 +1,27 @@
+diff -urN AppFactory.new/src/main.c AppFactory/src/main.c
+--- AppFactory.new/src/main.c	2005-05-04 20:58:11.000000000 +0200
++++ AppFactory/src/main.c	2005-05-04 21:02:21.000000000 +0200
+@@ -35,10 +35,10 @@
+ #include <libxml/parser.h>
+ 
+ #define DEBUG              1   /* Allow debug output */
+-#include <rox/rox.h>
+-#include <rox/rox_resources.h>
+-#include <rox/rox_dnd.h>
+-#include <rox/gtksavebox.h>
++#include <ROX-CLib2/rox.h>
++#include <ROX-CLib2/rox_resources.h>
++#include <ROX-CLib2/rox_dnd.h>
++#include <ROX-CLib2/gtksavebox.h>
+ 
+ #define PROMPT_UTIL  "promptArgs.py"
+ #define DEFAULT_ICON "application.png"
+@@ -93,7 +93,7 @@
+   printf("Distributed under the terms of the GNU General Public License.\n");
+   printf("(See the file COPYING in the Help directory).\n");
+   printf("%s last compiled %s\n", __FILE__, __DATE__);
+-  printf("ROX-CLib version %s\n", rox_clib_version_string());
++  printf("ROX-CLib2 version %s\n", rox_clib_version_string());
+   printf("libxml version %d\n", LIBXML_VERSION);
+ 
+   printf("\nCompile time options:\n");
