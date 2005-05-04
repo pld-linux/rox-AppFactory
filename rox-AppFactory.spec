@@ -3,18 +3,22 @@
 Summary:	ROX-AppFactory automates the creation of ROX wrappers
 Summary(pl):	ROX-AppFactory automatyzuje proces tworzenia wrapperów ROXa
 Name:		rox-%{_name}
-Version:	1.0.1
-Release:	2
-License:	GPL
+Version:	2.1.3
+Release:	1
+License:	GPL v2
 Group:		X11/Applications
-Source0:	http://www.kerofin.demon.co.uk/rox/%{_name}-%{version}.tgz
-# Source0-md5:	d55536b6d7ddadd58fff43d8142f69df
-Patch0:		%{name}-libxml-includes.patch
-Patch1:		%{name}-paths-fix.patch
-URL:		http://www.kerofin.demon.co.uk/rox/utils.html#appfactory
-BuildRequires:	gtk+-devel
+Source0:	http://www.kerofin.demon.co.uk/rox/%{_name}-%{version}.tar.gz
+# Source0-md5:	d2d343ac40e4dd184a09995c3778f644
+#Patch0:	%{name}-paths-fix.patch
+Patch1:		%{name}-ROX-apps-paths.patch
+Patch2:		%{name}-ROX-CLib2-includes.patch
+Patch3:		%{name}-aclocal.patch
+URL:		http://www.kerofin.demon.co.uk/rox/appfactory.html
+BuildRequires:	autoconf
+BuildRequires:	gtk+2-devel
 BuildRequires:	libxml2-devel
-BuildRequires:	rox-CLib-devel >= 0.1.4
+BuildRequires:	rox-CLib2-devel >= 2.1.4
+Requires:	rox >= 2.2.0-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_appsdir	%{_libdir}/ROX-apps
@@ -29,38 +33,43 @@ wrapperów ROXa.
 
 %prep
 %setup -q -n %{_name}
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
+cd src
+%{__autoconf}
+cd ..
 ./AppRun --compile
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_appsdir}/%{_name}/{Help,%{_platform},Resources} \
-  $RPM_BUILD_ROOT%{_appsdir}/%{_name}/pixmaps
+	$RPM_BUILD_ROOT%{_appsdir}/%{_name}/pixmaps
 
-
-rm -f ../install
-install App* rox_run $RPM_BUILD_ROOT%{_appsdir}/%{_name}
+install .DirIcon AppRun *.xml rox_run $RPM_BUILD_ROOT%{_appsdir}/%{_name}
 install Help/README $RPM_BUILD_ROOT%{_appsdir}/%{_name}/Help
 install %{_platform}/AppFactory $RPM_BUILD_ROOT%{_appsdir}/%{_name}/%{_platform}
-install pixmaps/*xpm $RPM_BUILD_ROOT%{_appsdir}/%{_name}/pixmaps
-install Resources/*.{dtd,xpm,py} $RPM_BUILD_ROOT%{_appsdir}/%{_name}/Resources
+install pixmaps/*.xpm $RPM_BUILD_ROOT%{_appsdir}/%{_name}/pixmaps
+install Resources/*.{dtd,png,xpm,py} $RPM_BUILD_ROOT%{_appsdir}/%{_name}/Resources
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Help/Versions
+%doc Help/{Changes,Versions}
 %attr(755,root,root) %{_appsdir}/%{_name}/*[Rr]un
 %attr(755,root,root) %{_appsdir}/%{_name}/Resources/*.py
 %attr(755,root,root) %{_appsdir}/%{_name}/%{_platform}
-%{_appsdir}/%{_name}/AppI*
+%{_appsdir}/%{_name}/.DirIcon
+%{_appsdir}/%{_name}/*.xml
 %{_appsdir}/%{_name}/pixmaps
 %{_appsdir}/%{_name}/Help
-%{_appsdir}/%{_name}/Resources/*dtd
+%{_appsdir}/%{_name}/Resources/*.dtd
+%{_appsdir}/%{_name}/Resources/*.png
 %{_appsdir}/%{_name}/Resources/*.xpm
 %dir %{_appsdir}/%{_name}
 %dir %{_appsdir}/%{_name}/Resources
