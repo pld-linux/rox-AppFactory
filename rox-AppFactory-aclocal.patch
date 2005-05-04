@@ -1,0 +1,21 @@
+diff -urN AppFactory.new/src/aclocal.m4 AppFactory/src/aclocal.m4
+--- AppFactory.new/src/aclocal.m4	2005-05-04 20:58:11.000000000 +0200
++++ AppFactory/src/aclocal.m4	2005-05-04 21:00:50.000000000 +0200
+@@ -118,14 +118,14 @@
+ 
+ dnl ROX-CLib specific
+ AC_DEFUN(ROX_CLIB_OLD, [
+-ROX_APP_DIR_VERSION(ROX-CLib, -v, $1, $2, $3, ROX_CLIB_VERSION)
++ROX_APP_DIR_VERSION(ROX-CLib2, -v, $1, $2, $3, ROX_CLIB_VERSION)
+ ])
+ 
+ dnl ROX-CLib specific
+ AC_DEFUN(ROX_CLIB, [
+-ROX_LIB_DIR_VERSION(ROX-CLib, $1.$2.$3, ROX_CLIB_PATH, www.kerofin.demon.co.uk)
++ROX_LIB_DIR_VERSION(ROX-CLib2, $1.$2.$3, ROX_CLIB_PATH, www.kerofin.demon.co.uk)
+ if test -z "$ROX_CLIB_PATH" ; then
+-  AC_MSG_ERROR(Cannot find ROX-CLib)
++  AC_MSG_ERROR(Cannot find ROX-CLib2)
+ fi
+ AC_SUBST(ROX_CLIB_PATH)
+ ac_verstr=`"$ROX_CLIB_PATH"/AppRun -v`
