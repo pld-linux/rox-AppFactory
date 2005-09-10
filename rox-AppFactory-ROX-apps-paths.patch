@@ -6,13 +6,13 @@ diff -urN AppFactory.new/libdir AppFactory/libdir
  
  if [ x"$LIBDIRPATH" = x ]; then
 -  LIBDIRPATH="$HOME/lib:/usr/local/lib:/usr/lib"
-+  LIBDIRPATH="$HOME/lib:/usr/local/lib:/usr/lib:/usr/lib/ROX-apps"
++  LIBDIRPATH="$HOME/lib:/usr/local/lib:/usr/lib:/usr/lib/rox:/usr/lib64/rox"
    export LIBDIRPATH
  fi
  
  if [ x"$APPDIRPATH" = x ]; then
 -  APPDIRPATH="$HOME/Apps:/usr/local/apps:/usr/apps"
-+  APPDIRPATH="$HOME/Apps:/usr/local/apps:/usr/apps:/usr/lib/ROX-apps"
++  APPDIRPATH="$HOME/Apps:/usr/local/apps:/usr/apps:/usr/lib/rox:/usr/lib64/rox"
    export APPDIRPATH
  fi
  
