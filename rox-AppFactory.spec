@@ -1,7 +1,7 @@
 %define _name AppFactory
 %define _platform %(echo `uname -s`-`uname -m|sed 's/i.86/ix86/'`)
 Summary:	ROX-AppFactory automates the creation of ROX wrappers
-Summary(pl.UTF-8):   ROX-AppFactory automatyzuje proces tworzenia wrapperów ROXa
+Summary(pl.UTF-8):	ROX-AppFactory automatyzuje proces tworzenia wrapperów ROXa
 Name:		rox-%{_name}
 Version:	2.1.3
 Release:	2
